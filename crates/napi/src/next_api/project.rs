@@ -48,7 +48,7 @@ use super::{
         TurbopackResult, VcArc,
     },
 };
-use crate::{register, util::log_panic_and_inform};
+use crate::register;
 
 /// Used by [`benchmark_file_io`]. This is a noisy benchmark, so set the
 /// threshold high.
@@ -726,17 +726,24 @@ pub fn project_hmr_events(
                 async move {
                     let project = project.project().resolve().await?;
                     let state = project.hmr_version_state(identifier.clone(), session);
-                    let update = hmr_update(project, identifier, state)
+
+                    let missing: ReadRef<Update> = Update::Missing.cell().await?;
+                    let Some(state) = &*state.await? else {
+                        // If there's no matching version state and no error was returned, refresh
+                        // the page.
+                        return Ok((missing, Arc::new(vec![]), Arc::new(vec![])));
+                    };
+
+                    let update = hmr_update(project, identifier, *state)
                         .strongly_consistent()
-                        .await
-                        .inspect_err(|e| log_panic_and_inform(e))?;
+                        .await?;
                     let HmrUpdateWithIssues {
                         update,
                         issues,
                         diagnostics,
                     } = &*update;
                     match &**update {
-                        Update::None => {}
+                        Update::Missing | Update::None => {}
                         Update::Total(TotalUpdate { to }) => {
                             state.set(to.clone()).await?;
                         }
@@ -769,7 +776,9 @@ pub fn project_hmr_events(
                 headers: None,
             };
             let update = match &*update {
-                Update::Total(_) => ClientUpdateInstruction::restart(&identifier, &update_issues),
+                Update::Missing | Update::Total(_) => {
+                    ClientUpdateInstruction::restart(&identifier, &update_issues)
+                }
                 Update::Partial(update) => ClientUpdateInstruction::partial(
                     &identifier,
                     &update.instruction,
@@ -1027,7 +1036,8 @@ pub async fn project_trace_source(
                 .container
                 .get_source_map(server_path, module.clone())
                 .await;
-            if map_result.is_err() {
+
+            if map_result.as_ref().map(|r| r.is_none()).unwrap_or(true) {
                 // If the chunk doesn't exist as a server chunk, try a client chunk.
                 // TODO: Properly tag all server chunks and use the `isServer` query param.
                 // Currently, this is inaccurate as it does not cover RSC server
