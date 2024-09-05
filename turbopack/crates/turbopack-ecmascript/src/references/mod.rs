@@ -1251,7 +1251,7 @@ async fn handle_worker(
         source,
         ..
     } = state;
-    if let JsValue::RelUrl(url) = url {
+    if let JsValue::Url(url, JsValueUrlKind::Relative) = url {
         let pat = Pattern::Constant(url.as_str().into());
         analysis.add_reference(WorkerAssetReference::new(
             origin,
