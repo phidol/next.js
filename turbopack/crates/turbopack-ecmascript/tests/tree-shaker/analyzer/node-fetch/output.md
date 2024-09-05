@@ -130,14 +130,13 @@ graph TD
     N2["Items: [ItemId(3, Normal)]"];
     N3["Items: [ItemId(ModuleEvaluation)]"];
     N4["Items: [ItemId(Export((&quot;__TURBOPACK__default__export__&quot;, #4), &quot;default&quot;))]"];
-    N5["Items: [ItemId(0, ImportBinding(0))]"];
-    N6["Items: [ItemId(1, VarDeclarator(0))]"];
-    N6 --> N5;
+    N5["Items: [ItemId(1, VarDeclarator(0))]"];
+    N6["Items: [ItemId(0, ImportBinding(0))]"];
+    N3 --> N2;
     N2 --> N1;
     N2 --> N0;
     N4 --> N2;
     N3 --> N0;
-    N3 --> N2;
 ```
 # Entrypoints
 
@@ -186,11 +185,12 @@ export { __TURBOPACK__default__export__ as b } from "__TURBOPACK_VAR__" assert {
 ## Part 3
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 2
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+"module evaluation";
 
 ```
 ## Part 4
@@ -206,19 +206,8 @@ export { __TURBOPACK__default__export__ as default };
 ```
 ## Part 5
 ```js
-import Stream from 'node:stream';
-export { Stream as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
-};
-
-```
-## Part 6
-```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
-};
 import { c as Stream } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
+    __turbopack_part__: 6
 };
 const streamDestructionSupported = 'destroy' in Stream.Readable.prototype;
 export { streamDestructionSupported as d } from "__TURBOPACK_VAR__" assert {
@@ -226,9 +215,17 @@ export { streamDestructionSupported as d } from "__TURBOPACK_VAR__" assert {
 };
 
 ```
+## Part 6
+```js
+import Stream from 'node:stream';
+export { Stream as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
+};
+
+```
 ## Part 7
 ```js
-export { __TURBOPACK__default__export__ as default } from "__TURBOPACK_PART__" assert {
+export { default } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export default"
 };
 
@@ -236,11 +233,12 @@ export { __TURBOPACK__default__export__ as default } from "__TURBOPACK_PART__" a
 ## Merged (module eval)
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 2
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+"module evaluation";
 
 ```
 # Entrypoints
@@ -290,11 +288,12 @@ export { __TURBOPACK__default__export__ as b } from "__TURBOPACK_VAR__" assert {
 ## Part 3
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 2
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+"module evaluation";
 
 ```
 ## Part 4
@@ -310,19 +309,8 @@ export { __TURBOPACK__default__export__ as default };
 ```
 ## Part 5
 ```js
-import Stream from 'node:stream';
-export { Stream as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
-};
-
-```
-## Part 6
-```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
-};
 import { c as Stream } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
+    __turbopack_part__: 6
 };
 const streamDestructionSupported = 'destroy' in Stream.Readable.prototype;
 export { streamDestructionSupported as d } from "__TURBOPACK_VAR__" assert {
@@ -330,9 +318,17 @@ export { streamDestructionSupported as d } from "__TURBOPACK_VAR__" assert {
 };
 
 ```
+## Part 6
+```js
+import Stream from 'node:stream';
+export { Stream as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
+};
+
+```
 ## Part 7
 ```js
-export { __TURBOPACK__default__export__ as default } from "__TURBOPACK_PART__" assert {
+export { default } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export default"
 };
 
@@ -340,10 +336,11 @@ export { __TURBOPACK__default__export__ as default } from "__TURBOPACK_PART__" a
 ## Merged (module eval)
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 2
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+"module evaluation";
 
 ```

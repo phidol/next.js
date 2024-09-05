@@ -141,6 +141,7 @@ await Promise.resolve();
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 ## Part 2
@@ -207,6 +208,7 @@ export { effect } from "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 # Entrypoints
@@ -236,6 +238,7 @@ await Promise.resolve();
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 ## Part 2
@@ -299,5 +302,6 @@ export { effects } from "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```

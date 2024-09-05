@@ -120,13 +120,12 @@ graph TD
     N1["Items: [ItemId(ModuleEvaluation)]"];
     N2["Items: [ItemId(2, VarDeclarator(0))]"];
     N3["Items: [ItemId(Export((&quot;runtime&quot;, #2), &quot;runtime&quot;))]"];
-    N4["Items: [ItemId(0, ImportBinding(0))]"];
+    N4["Items: [ItemId(Export((&quot;GET&quot;, #2), &quot;GET&quot;))]"];
     N5["Items: [ItemId(1, VarDeclarator(0))]"];
-    N6["Items: [ItemId(Export((&quot;GET&quot;, #2), &quot;GET&quot;))]"];
-    N5 --> N4;
-    N6 --> N5;
-    N3 --> N2;
+    N6["Items: [ItemId(0, ImportBinding(0))]"];
     N1 --> N0;
+    N4 --> N5;
+    N3 --> N2;
 ```
 # Entrypoints
 
@@ -139,7 +138,7 @@ graph TD
     ): 3,
     Export(
         "GET",
-    ): 6,
+    ): 4,
 }
 ```
 
@@ -155,6 +154,7 @@ import "next/server";
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 ## Part 2
@@ -178,39 +178,36 @@ export { runtime };
 ```
 ## Part 4
 ```js
-import { NextResponse } from "next/server";
-export { NextResponse as b } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 5
 };
+import { b as GET } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 5
+};
+export { GET };
 
 ```
 ## Part 5
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 4
-};
-import { b as NextResponse } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 4
+import { c as NextResponse } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 6
 };
 const GET = (req)=>{
     return NextResponse.json({
         pathname: req.nextUrl.pathname
     });
 };
-export { GET as c } from "__TURBOPACK_VAR__" assert {
+export { GET as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 6
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
+import { NextResponse } from "next/server";
+export { NextResponse as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import { c as GET } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
-};
-export { GET };
 
 ```
 ## Part 7
@@ -228,6 +225,7 @@ export { GET } from "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 # Entrypoints
@@ -241,7 +239,7 @@ import "__TURBOPACK_PART__" assert {
     ): 3,
     Export(
         "GET",
-    ): 6,
+    ): 4,
 }
 ```
 
@@ -257,6 +255,7 @@ import "next/server";
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```
 ## Part 2
@@ -280,39 +279,36 @@ export { runtime };
 ```
 ## Part 4
 ```js
-import { NextResponse } from "next/server";
-export { NextResponse as b } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 5
 };
+import { b as GET } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 5
+};
+export { GET };
 
 ```
 ## Part 5
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 4
-};
-import { b as NextResponse } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 4
+import { c as NextResponse } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 6
 };
 const GET = (req)=>{
     return NextResponse.json({
         pathname: req.nextUrl.pathname
     });
 };
-export { GET as c } from "__TURBOPACK_VAR__" assert {
+export { GET as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 6
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
+import { NextResponse } from "next/server";
+export { NextResponse as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import { c as GET } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 5
-};
-export { GET };
 
 ```
 ## Part 7
@@ -330,5 +326,6 @@ export { GET } from "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 0
 };
+"module evaluation";
 
 ```

@@ -588,8 +588,8 @@ graph TD
 ```mermaid
 graph TD
     N0["Items: [ItemId(4, VarDeclarator(0))]"];
-    N1["Items: [ItemId(0, ImportBinding(0))]"];
-    N2["Items: [ItemId(0, ImportBinding(1))]"];
+    N1["Items: [ItemId(14, VarDeclarator(0))]"];
+    N2["Items: [ItemId(Export((&quot;getTracer&quot;, #2), &quot;getTracer&quot;))]"];
     N3["Items: [ItemId(12, VarDeclarator(0))]"];
     N4["Items: [ItemId(10, VarDeclarator(0))]"];
     N5["Items: [ItemId(11, VarDeclarator(0))]"];
@@ -608,8 +608,8 @@ graph TD
     N18["Items: [ItemId(7, VarDeclarator(0))]"];
     N19["Items: [ItemId(Export((&quot;SpanStatusCode&quot;, #2), &quot;SpanStatusCode&quot;))]"];
     N20["Items: [ItemId(13, Normal)]"];
-    N21["Items: [ItemId(14, VarDeclarator(0))]"];
-    N22["Items: [ItemId(Export((&quot;getTracer&quot;, #2), &quot;getTracer&quot;))]"];
+    N21["Items: [ItemId(0, ImportBinding(0))]"];
+    N22["Items: [ItemId(0, ImportBinding(1))]"];
     N12 --> N11;
     N12 --> N10;
     N15 --> N12;
@@ -625,24 +625,22 @@ graph TD
     N5 --> N4;
     N20 --> N15;
     N20 --> N3;
-    N20 --> N2;
+    N14 --> N13;
     N20 --> N5;
     N20 --> N17;
     N20 --> N13;
-    N20 --> N1;
+    N14 --> N12;
     N20 --> N18;
     N20 --> N0;
-    N21 --> N20;
+    N1 --> N20;
     N7 --> N6;
     N9 --> N8;
-    N22 --> N21;
+    N2 --> N1;
     N19 --> N18;
     N19 --> N15;
     N16 --> N15;
     N8 --> N6;
     N14 --> N10;
-    N14 --> N12;
-    N14 --> N13;
 ```
 # Entrypoints
 
@@ -664,7 +662,7 @@ graph TD
     ): 7,
     Export(
         "getTracer",
-    ): 22,
+    ): 2,
 }
 ```
 
@@ -682,18 +680,30 @@ export { isPromise as a } from "__TURBOPACK_VAR__" assert {
 ```
 ## Part 1
 ```js
-import { LogSpanAllowList } from './constants';
-export { LogSpanAllowList as b } from "__TURBOPACK_VAR__" assert {
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 20
+};
+import { b as NextTracerImpl } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 20
+};
+const getTracer = (()=>{
+    const tracer = new NextTracerImpl();
+    return ()=>tracer;
+})();
+export { getTracer as c } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 2
 ```js
-import { NextVanillaSpanAllowlist } from './constants';
-export { NextVanillaSpanAllowlist as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
 };
+import { c as getTracer } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+export { getTracer };
 
 ```
 ## Part 3
@@ -841,14 +851,15 @@ export { rootSpanAttributesStore as j } from "__TURBOPACK_VAR__" assert {
 ## Part 14
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 10
+    __turbopack_part__: 13
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 13
+    __turbopack_part__: 10
 };
+"module evaluation";
 
 ```
 ## Part 15
@@ -970,9 +981,6 @@ import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
 import "__TURBOPACK_PART__" assert {
@@ -980,9 +988,6 @@ import "__TURBOPACK_PART__" assert {
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 13
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 18
@@ -1002,8 +1007,8 @@ import { l as propagation } from "__TURBOPACK_PART__" assert {
 import { d as clientTraceDataSetter } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
-import { c as NextVanillaSpanAllowlist } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { s as NextVanillaSpanAllowlist } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 22
 };
 import { p as ROOT_CONTEXT } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 15
@@ -1017,8 +1022,8 @@ import { q as rootSpanIdKey } from "__TURBOPACK_PART__" assert {
 import { j as rootSpanAttributesStore } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 13
 };
-import { b as LogSpanAllowList } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
+import { t as LogSpanAllowList } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 21
 };
 import { r as closeSpanWithError } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 18
@@ -1164,41 +1169,32 @@ class NextTracerImpl {
         return rootSpanAttributesStore.get(spanId);
     }
 }
-export { NextTracerImpl as s } from "__TURBOPACK_VAR__" assert {
+export { NextTracerImpl as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 21
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 20
-};
-import { s as NextTracerImpl } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 20
-};
-const getTracer = (()=>{
-    const tracer = new NextTracerImpl();
-    return ()=>tracer;
-})();
-export { getTracer as t } from "__TURBOPACK_VAR__" assert {
+import { LogSpanAllowList } from './constants';
+export { LogSpanAllowList as t } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 22
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 21
+import { NextVanillaSpanAllowlist } from './constants';
+export { NextVanillaSpanAllowlist as s } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import { t as getTracer } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 21
-};
-export { getTracer };
 
 ```
 ## Part 23
 ```js
+export { getTracer } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: "export getTracer"
+};
 export { BubbledError } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export BubbledError"
 };
@@ -1211,22 +1207,20 @@ export { SpanKind } from "__TURBOPACK_PART__" assert {
 export { SpanStatusCode } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export SpanStatusCode"
 };
-export { getTracer } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: "export getTracer"
-};
 
 ```
 ## Merged (module eval)
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 10
+    __turbopack_part__: 13
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 13
+    __turbopack_part__: 10
 };
+"module evaluation";
 
 ```
 # Entrypoints
@@ -1249,7 +1243,7 @@ import "__TURBOPACK_PART__" assert {
     ): 7,
     Export(
         "getTracer",
-    ): 22,
+    ): 2,
 }
 ```
 
@@ -1267,18 +1261,30 @@ export { isPromise as a } from "__TURBOPACK_VAR__" assert {
 ```
 ## Part 1
 ```js
-import { LogSpanAllowList } from './constants';
-export { LogSpanAllowList as b } from "__TURBOPACK_VAR__" assert {
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 20
+};
+import { b as NextTracerImpl } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 20
+};
+const getTracer = (()=>{
+    const tracer = new NextTracerImpl();
+    return ()=>tracer;
+})();
+export { getTracer as c } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 2
 ```js
-import { NextVanillaSpanAllowlist } from './constants';
-export { NextVanillaSpanAllowlist as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
 };
+import { c as getTracer } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+export { getTracer };
 
 ```
 ## Part 3
@@ -1448,6 +1454,7 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
+"module evaluation";
 
 ```
 ## Part 16
@@ -1549,9 +1556,6 @@ import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
 import "__TURBOPACK_PART__" assert {
@@ -1559,9 +1563,6 @@ import "__TURBOPACK_PART__" assert {
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
 };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 18
@@ -1581,8 +1582,8 @@ import { m as propagation } from "__TURBOPACK_PART__" assert {
 import { d as clientTraceDataSetter } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
-import { c as NextVanillaSpanAllowlist } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { s as NextVanillaSpanAllowlist } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 22
 };
 import { q as ROOT_CONTEXT } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 16
@@ -1596,8 +1597,8 @@ import { j as rootSpanIdKey } from "__TURBOPACK_PART__" assert {
 import { k as rootSpanAttributesStore } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import { b as LogSpanAllowList } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
+import { t as LogSpanAllowList } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 21
 };
 import { r as closeSpanWithError } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 18
@@ -1743,41 +1744,32 @@ class NextTracerImpl {
         return rootSpanAttributesStore.get(spanId);
     }
 }
-export { NextTracerImpl as s } from "__TURBOPACK_VAR__" assert {
+export { NextTracerImpl as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 21
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 20
-};
-import { s as NextTracerImpl } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 20
-};
-const getTracer = (()=>{
-    const tracer = new NextTracerImpl();
-    return ()=>tracer;
-})();
-export { getTracer as t } from "__TURBOPACK_VAR__" assert {
+import { LogSpanAllowList } from './constants';
+export { LogSpanAllowList as t } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
 ```
 ## Part 22
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 21
+import { NextVanillaSpanAllowlist } from './constants';
+export { NextVanillaSpanAllowlist as s } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import { t as getTracer } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 21
-};
-export { getTracer };
 
 ```
 ## Part 23
 ```js
+export { getTracer } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: "export getTracer"
+};
 export { BubbledError } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export BubbledError"
 };
@@ -1789,9 +1781,6 @@ export { SpanKind } from "__TURBOPACK_PART__" assert {
 };
 export { SpanStatusCode } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: "export SpanStatusCode"
-};
-export { getTracer } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: "export getTracer"
 };
 
 ```
@@ -1806,5 +1795,6 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
+"module evaluation";
 
 ```

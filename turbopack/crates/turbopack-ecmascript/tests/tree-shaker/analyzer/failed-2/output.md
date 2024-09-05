@@ -551,16 +551,16 @@ graph TD
 # Final
 ```mermaid
 graph TD
-    N0["Items: [ItemId(1, ImportBinding(0))]"];
-    N1["Items: [ItemId(2, ImportBinding(0))]"];
-    N2["Items: [ItemId(3, ImportBinding(0))]"];
+    N0["Items: [ItemId(1, ImportOfModule)]"];
+    N1["Items: [ItemId(2, ImportOfModule)]"];
+    N2["Items: [ItemId(3, ImportOfModule)]"];
     N3["Items: [ItemId(12, Normal)]"];
     N4["Items: [ItemId(Export((&quot;formatDynamicAPIAccesses&quot;, #2), &quot;formatDynamicAPIAccesses&quot;))]"];
     N5["Items: [ItemId(11, Normal)]"];
     N6["Items: [ItemId(Export((&quot;usedDynamicAPIs&quot;, #2), &quot;usedDynamicAPIs&quot;))]"];
     N7["Items: [ItemId(5, Normal)]"];
     N8["Items: [ItemId(Export((&quot;createPrerenderState&quot;, #2), &quot;createPrerenderState&quot;))]"];
-    N9["Items: [ItemId(0, ImportBinding(0))]"];
+    N9["Items: [ItemId(ModuleEvaluation)]"];
     N10["Items: [ItemId(4, VarDeclarator(0))]"];
     N11["Items: [ItemId(13, Normal)]"];
     N12["Items: [ItemId(14, Normal)]"];
@@ -575,17 +575,17 @@ graph TD
     N21["Items: [ItemId(6, Normal)]"];
     N22["Items: [ItemId(Export((&quot;markCurrentScopeAsDynamic&quot;, #2), &quot;markCurrentScopeAsDynamic&quot;))]"];
     N23["Items: [ItemId(0, ImportOfModule)]"];
-    N24["Items: [ItemId(1, ImportOfModule)]"];
-    N25["Items: [ItemId(2, ImportOfModule)]"];
-    N26["Items: [ItemId(3, ImportOfModule)]"];
-    N27["Items: [ItemId(ModuleEvaluation)]"];
-    N24 --> N23;
-    N25 --> N23;
-    N25 --> N24;
-    N26 --> N23;
-    N26 --> N24;
-    N26 --> N25;
-    N10 --> N9;
+    N24["Items: [ItemId(0, ImportBinding(0))]"];
+    N25["Items: [ItemId(1, ImportBinding(0))]"];
+    N26["Items: [ItemId(2, ImportBinding(0))]"];
+    N27["Items: [ItemId(3, ImportBinding(0))]"];
+    N0 --> N23;
+    N1 --> N23;
+    N1 --> N0;
+    N2 --> N23;
+    N2 --> N0;
+    N2 --> N1;
+    N9 --> N0;
     N8 --> N7;
     N22 --> N21;
     N20 --> N19;
@@ -594,27 +594,18 @@ graph TD
     N6 --> N5;
     N4 --> N3;
     N13 --> N12;
-    N21 --> N2;
-    N21 --> N1;
+    N9 --> N2;
+    N12 --> N11;
     N21 --> N14;
-    N21 --> N0;
-    N19 --> N2;
-    N19 --> N1;
+    N9 --> N1;
+    N9 --> N23;
+    N12 --> N10;
     N19 --> N14;
-    N19 --> N0;
+    N11 --> N10;
     N17 --> N14;
     N15 --> N14;
     N14 --> N11;
     N14 --> N10;
-    N14 --> N9;
-    N11 --> N10;
-    N12 --> N11;
-    N12 --> N10;
-    N12 --> N9;
-    N27 --> N23;
-    N27 --> N24;
-    N27 --> N25;
-    N27 --> N26;
 ```
 # Entrypoints
 
@@ -623,7 +614,7 @@ graph TD
     Export(
         "createPrerenderState",
     ): 8,
-    ModuleEvaluation: 27,
+    ModuleEvaluation: 9,
     Export(
         "markCurrentScopeAsDynamic",
     ): 22,
@@ -653,26 +644,35 @@ graph TD
 # Modules (dev)
 ## Part 0
 ```js
-import { DynamicServerError } from '../../client/components/hooks-server-context';
-export { DynamicServerError as a } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import '../../client/components/hooks-server-context';
 
 ```
 ## Part 1
 ```js
-import { StaticGenBailoutError } from '../../client/components/static-generation-bailout';
-export { StaticGenBailoutError as b } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import '../../client/components/static-generation-bailout';
 
 ```
 ## Part 2
 ```js
-import { getPathname } from '../../lib/url';
-export { getPathname as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import '../../lib/url';
 
 ```
 ## Part 3
@@ -694,7 +694,7 @@ function formatDynamicAPIAccesses(prerenderState) {
         return `Dynamic API Usage Debug - ${expression}:\n${stack}`;
     });
 }
-export { formatDynamicAPIAccesses as d } from "__TURBOPACK_VAR__" assert {
+export { formatDynamicAPIAccesses as a } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -704,7 +704,7 @@ export { formatDynamicAPIAccesses as d } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
-import { d as formatDynamicAPIAccesses } from "__TURBOPACK_PART__" assert {
+import { a as formatDynamicAPIAccesses } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
 export { formatDynamicAPIAccesses };
@@ -715,7 +715,7 @@ export { formatDynamicAPIAccesses };
 function usedDynamicAPIs(prerenderState) {
     return prerenderState.dynamicAccesses.length > 0;
 }
-export { usedDynamicAPIs as e } from "__TURBOPACK_VAR__" assert {
+export { usedDynamicAPIs as usedDynamicAPIs } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -725,7 +725,7 @@ export { usedDynamicAPIs as e } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
-import { e as usedDynamicAPIs } from "__TURBOPACK_PART__" assert {
+import { usedDynamicAPIs as usedDynamicAPIs } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
 export { usedDynamicAPIs };
@@ -739,7 +739,7 @@ function createPrerenderState(isDebugSkeleton) {
         dynamicAccesses: []
     };
 }
-export { createPrerenderState as f } from "__TURBOPACK_VAR__" assert {
+export { createPrerenderState as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -749,7 +749,7 @@ export { createPrerenderState as f } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 7
 };
-import { f as createPrerenderState } from "__TURBOPACK_PART__" assert {
+import { b as createPrerenderState } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 7
 };
 export { createPrerenderState };
@@ -757,22 +757,28 @@ export { createPrerenderState };
 ```
 ## Part 9
 ```js
-import React from 'react';
-export { React as g } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 2
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
+};
+"module evaluation";
 
 ```
 ## Part 10
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
 const hasPostpone = typeof React.unstable_postpone === 'function';
-export { hasPostpone as h } from "__TURBOPACK_VAR__" assert {
+export { hasPostpone as d } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -782,7 +788,7 @@ export { hasPostpone as h } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import { h as hasPostpone } from "__TURBOPACK_PART__" assert {
+import { d as hasPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
 function assertPostpone() {
@@ -790,7 +796,7 @@ function assertPostpone() {
         throw new Error(`Invariant: React.unstable_postpone is not defined. This suggests the wrong version of React was loaded. This is a bug in Next.js`);
     }
 }
-export { assertPostpone as i } from "__TURBOPACK_VAR__" assert {
+export { assertPostpone as e } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -803,13 +809,10 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { i as assertPostpone } from "__TURBOPACK_PART__" assert {
+import { e as assertPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 11
 };
 function createPostponedAbortSignal(reason) {
@@ -822,7 +825,7 @@ function createPostponedAbortSignal(reason) {
     }
     return controller.signal;
 }
-export { createPostponedAbortSignal as j } from "__TURBOPACK_VAR__" assert {
+export { createPostponedAbortSignal as f } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -832,7 +835,7 @@ export { createPostponedAbortSignal as j } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
-import { j as createPostponedAbortSignal } from "__TURBOPACK_PART__" assert {
+import { f as createPostponedAbortSignal } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
 export { createPostponedAbortSignal };
@@ -846,13 +849,10 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { i as assertPostpone } from "__TURBOPACK_PART__" assert {
+import { e as assertPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 11
 };
 function postponeWithTracking(prerenderState, expression, pathname) {
@@ -864,7 +864,7 @@ function postponeWithTracking(prerenderState, expression, pathname) {
     });
     React.unstable_postpone(reason);
 }
-export { postponeWithTracking as k } from "__TURBOPACK_VAR__" assert {
+export { postponeWithTracking as g } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -874,14 +874,14 @@ export { postponeWithTracking as k } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function trackDynamicFetch(store, expression) {
     if (!store.prerenderState || store.isUnstableCacheCallback) return;
     postponeWithTracking(store.prerenderState, expression, store.urlPathname);
 }
-export { trackDynamicFetch as l } from "__TURBOPACK_VAR__" assert {
+export { trackDynamicFetch as h } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -891,7 +891,7 @@ export { trackDynamicFetch as l } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 15
 };
-import { l as trackDynamicFetch } from "__TURBOPACK_PART__" assert {
+import { h as trackDynamicFetch } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 15
 };
 export { trackDynamicFetch };
@@ -902,13 +902,13 @@ export { trackDynamicFetch };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function Postpone({ reason, prerenderState, pathname }) {
     postponeWithTracking(prerenderState, reason, pathname);
 }
-export { Postpone as m } from "__TURBOPACK_VAR__" assert {
+export { Postpone as i } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -918,7 +918,7 @@ export { Postpone as m } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 17
 };
-import { m as Postpone } from "__TURBOPACK_PART__" assert {
+import { i as Postpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 17
 };
 export { Postpone };
@@ -927,27 +927,18 @@ export { Postpone };
 ## Part 19
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { j as DynamicServerError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 25
 };
-import { a as DynamicServerError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { k as getPathname } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 27
 };
-import { c as getPathname } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { l as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 26
 };
-import { b as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function trackDynamicDataAccessed(store, expression) {
@@ -968,7 +959,7 @@ function trackDynamicDataAccessed(store, expression) {
         }
     }
 }
-export { trackDynamicDataAccessed as n } from "__TURBOPACK_VAR__" assert {
+export { trackDynamicDataAccessed as m } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -978,7 +969,7 @@ export { trackDynamicDataAccessed as n } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 19
 };
-import { n as trackDynamicDataAccessed } from "__TURBOPACK_PART__" assert {
+import { m as trackDynamicDataAccessed } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 19
 };
 export { trackDynamicDataAccessed };
@@ -987,27 +978,18 @@ export { trackDynamicDataAccessed };
 ## Part 21
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { j as DynamicServerError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 25
 };
-import { a as DynamicServerError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { k as getPathname } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 27
 };
-import { c as getPathname } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { l as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 26
 };
-import { b as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function markCurrentScopeAsDynamic(store, expression) {
@@ -1028,7 +1010,7 @@ function markCurrentScopeAsDynamic(store, expression) {
         }
     }
 }
-export { markCurrentScopeAsDynamic as o } from "__TURBOPACK_VAR__" assert {
+export { markCurrentScopeAsDynamic as n } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1038,7 +1020,7 @@ export { markCurrentScopeAsDynamic as o } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 21
 };
-import { o as markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
+import { n as markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 21
 };
 export { markCurrentScopeAsDynamic };
@@ -1051,50 +1033,33 @@ import 'react';
 ```
 ## Part 24
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import React from 'react';
+export { React as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import '../../client/components/hooks-server-context';
 
 ```
 ## Part 25
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import { DynamicServerError } from '../../client/components/hooks-server-context';
+export { DynamicServerError as j } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import '../../client/components/static-generation-bailout';
 
 ```
 ## Part 26
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import { StaticGenBailoutError } from '../../client/components/static-generation-bailout';
+export { StaticGenBailoutError as l } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import '../../lib/url';
 
 ```
 ## Part 27
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 26
+import { getPathname } from '../../lib/url';
+export { getPathname as k } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
 
 ```
@@ -1129,17 +1094,18 @@ export { markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
 ## Merged (module eval)
 ```js
 import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 2
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 23
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 26
-};
+"module evaluation";
 
 ```
 # Entrypoints
@@ -1149,7 +1115,7 @@ import "__TURBOPACK_PART__" assert {
     Export(
         "createPrerenderState",
     ): 8,
-    ModuleEvaluation: 27,
+    ModuleEvaluation: 9,
     Export(
         "markCurrentScopeAsDynamic",
     ): 22,
@@ -1179,26 +1145,35 @@ import "__TURBOPACK_PART__" assert {
 # Modules (prod)
 ## Part 0
 ```js
-import { DynamicServerError } from '../../client/components/hooks-server-context';
-export { DynamicServerError as a } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import '../../client/components/hooks-server-context';
 
 ```
 ## Part 1
 ```js
-import { StaticGenBailoutError } from '../../client/components/static-generation-bailout';
-export { StaticGenBailoutError as b } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import '../../client/components/static-generation-bailout';
 
 ```
 ## Part 2
 ```js
-import { getPathname } from '../../lib/url';
-export { getPathname as c } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import '../../lib/url';
 
 ```
 ## Part 3
@@ -1220,7 +1195,7 @@ function formatDynamicAPIAccesses(prerenderState) {
         return `Dynamic API Usage Debug - ${expression}:\n${stack}`;
     });
 }
-export { formatDynamicAPIAccesses as d } from "__TURBOPACK_VAR__" assert {
+export { formatDynamicAPIAccesses as a } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1230,7 +1205,7 @@ export { formatDynamicAPIAccesses as d } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
-import { d as formatDynamicAPIAccesses } from "__TURBOPACK_PART__" assert {
+import { a as formatDynamicAPIAccesses } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 3
 };
 export { formatDynamicAPIAccesses };
@@ -1241,7 +1216,7 @@ export { formatDynamicAPIAccesses };
 function usedDynamicAPIs(prerenderState) {
     return prerenderState.dynamicAccesses.length > 0;
 }
-export { usedDynamicAPIs as e } from "__TURBOPACK_VAR__" assert {
+export { usedDynamicAPIs as usedDynamicAPIs } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1251,7 +1226,7 @@ export { usedDynamicAPIs as e } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
-import { e as usedDynamicAPIs } from "__TURBOPACK_PART__" assert {
+import { usedDynamicAPIs as usedDynamicAPIs } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 5
 };
 export { usedDynamicAPIs };
@@ -1265,7 +1240,7 @@ function createPrerenderState(isDebugSkeleton) {
         dynamicAccesses: []
     };
 }
-export { createPrerenderState as f } from "__TURBOPACK_VAR__" assert {
+export { createPrerenderState as b } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1275,7 +1250,7 @@ export { createPrerenderState as f } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 7
 };
-import { f as createPrerenderState } from "__TURBOPACK_PART__" assert {
+import { b as createPrerenderState } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 7
 };
 export { createPrerenderState };
@@ -1283,22 +1258,28 @@ export { createPrerenderState };
 ```
 ## Part 9
 ```js
-import React from 'react';
-export { React as g } from "__TURBOPACK_VAR__" assert {
-    __turbopack_var__: true
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
 };
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 2
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 23
+};
+"module evaluation";
 
 ```
 ## Part 10
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
 const hasPostpone = typeof React.unstable_postpone === 'function';
-export { hasPostpone as h } from "__TURBOPACK_VAR__" assert {
+export { hasPostpone as d } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1308,7 +1289,7 @@ export { hasPostpone as h } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import { h as hasPostpone } from "__TURBOPACK_PART__" assert {
+import { d as hasPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
 function assertPostpone() {
@@ -1316,7 +1297,7 @@ function assertPostpone() {
         throw new Error(`Invariant: React.unstable_postpone is not defined. This suggests the wrong version of React was loaded. This is a bug in Next.js`);
     }
 }
-export { assertPostpone as i } from "__TURBOPACK_VAR__" assert {
+export { assertPostpone as e } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1329,13 +1310,10 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { i as assertPostpone } from "__TURBOPACK_PART__" assert {
+import { e as assertPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 11
 };
 function createPostponedAbortSignal(reason) {
@@ -1348,7 +1326,7 @@ function createPostponedAbortSignal(reason) {
     }
     return controller.signal;
 }
-export { createPostponedAbortSignal as j } from "__TURBOPACK_VAR__" assert {
+export { createPostponedAbortSignal as f } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1358,7 +1336,7 @@ export { createPostponedAbortSignal as j } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
-import { j as createPostponedAbortSignal } from "__TURBOPACK_PART__" assert {
+import { f as createPostponedAbortSignal } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 12
 };
 export { createPostponedAbortSignal };
@@ -1372,13 +1350,10 @@ import "__TURBOPACK_PART__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 10
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
+import { c as React } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 24
 };
-import { g as React } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 9
-};
-import { i as assertPostpone } from "__TURBOPACK_PART__" assert {
+import { e as assertPostpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 11
 };
 function postponeWithTracking(prerenderState, expression, pathname) {
@@ -1390,7 +1365,7 @@ function postponeWithTracking(prerenderState, expression, pathname) {
     });
     React.unstable_postpone(reason);
 }
-export { postponeWithTracking as k } from "__TURBOPACK_VAR__" assert {
+export { postponeWithTracking as g } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1400,14 +1375,14 @@ export { postponeWithTracking as k } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function trackDynamicFetch(store, expression) {
     if (!store.prerenderState || store.isUnstableCacheCallback) return;
     postponeWithTracking(store.prerenderState, expression, store.urlPathname);
 }
-export { trackDynamicFetch as l } from "__TURBOPACK_VAR__" assert {
+export { trackDynamicFetch as h } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1417,7 +1392,7 @@ export { trackDynamicFetch as l } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 15
 };
-import { l as trackDynamicFetch } from "__TURBOPACK_PART__" assert {
+import { h as trackDynamicFetch } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 15
 };
 export { trackDynamicFetch };
@@ -1428,13 +1403,13 @@ export { trackDynamicFetch };
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function Postpone({ reason, prerenderState, pathname }) {
     postponeWithTracking(prerenderState, reason, pathname);
 }
-export { Postpone as m } from "__TURBOPACK_VAR__" assert {
+export { Postpone as i } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1444,7 +1419,7 @@ export { Postpone as m } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 17
 };
-import { m as Postpone } from "__TURBOPACK_PART__" assert {
+import { i as Postpone } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 17
 };
 export { Postpone };
@@ -1453,27 +1428,18 @@ export { Postpone };
 ## Part 19
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { j as DynamicServerError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 25
 };
-import { a as DynamicServerError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { k as getPathname } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 27
 };
-import { c as getPathname } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { l as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 26
 };
-import { b as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function trackDynamicDataAccessed(store, expression) {
@@ -1494,7 +1460,7 @@ function trackDynamicDataAccessed(store, expression) {
         }
     }
 }
-export { trackDynamicDataAccessed as n } from "__TURBOPACK_VAR__" assert {
+export { trackDynamicDataAccessed as m } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1504,7 +1470,7 @@ export { trackDynamicDataAccessed as n } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 19
 };
-import { n as trackDynamicDataAccessed } from "__TURBOPACK_PART__" assert {
+import { m as trackDynamicDataAccessed } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 19
 };
 export { trackDynamicDataAccessed };
@@ -1513,27 +1479,18 @@ export { trackDynamicDataAccessed };
 ## Part 21
 ```js
 import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { j as DynamicServerError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 25
 };
-import { a as DynamicServerError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 0
+import { k as getPathname } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 27
 };
-import { c as getPathname } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 2
+import { l as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 26
 };
-import { b as StaticGenBailoutError } from "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 1
-};
-import { k as postponeWithTracking } from "__TURBOPACK_PART__" assert {
+import { g as postponeWithTracking } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 14
 };
 function markCurrentScopeAsDynamic(store, expression) {
@@ -1554,7 +1511,7 @@ function markCurrentScopeAsDynamic(store, expression) {
         }
     }
 }
-export { markCurrentScopeAsDynamic as o } from "__TURBOPACK_VAR__" assert {
+export { markCurrentScopeAsDynamic as n } from "__TURBOPACK_VAR__" assert {
     __turbopack_var__: true
 };
 
@@ -1564,7 +1521,7 @@ export { markCurrentScopeAsDynamic as o } from "__TURBOPACK_VAR__" assert {
 import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 21
 };
-import { o as markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
+import { n as markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
     __turbopack_part__: 21
 };
 export { markCurrentScopeAsDynamic };
@@ -1577,50 +1534,33 @@ import 'react';
 ```
 ## Part 24
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import React from 'react';
+export { React as c } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import '../../client/components/hooks-server-context';
 
 ```
 ## Part 25
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import { DynamicServerError } from '../../client/components/hooks-server-context';
+export { DynamicServerError as j } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import '../../client/components/static-generation-bailout';
 
 ```
 ## Part 26
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
+import { StaticGenBailoutError } from '../../client/components/static-generation-bailout';
+export { StaticGenBailoutError as l } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import '../../lib/url';
 
 ```
 ## Part 27
 ```js
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 23
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 26
+import { getPathname } from '../../lib/url';
+export { getPathname as k } from "__TURBOPACK_VAR__" assert {
+    __turbopack_var__: true
 };
 
 ```
@@ -1655,16 +1595,17 @@ export { markCurrentScopeAsDynamic } from "__TURBOPACK_PART__" assert {
 ## Merged (module eval)
 ```js
 import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 0
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 2
+};
+import "__TURBOPACK_PART__" assert {
+    __turbopack_part__: 1
+};
+import "__TURBOPACK_PART__" assert {
     __turbopack_part__: 23
 };
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 24
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 25
-};
-import "__TURBOPACK_PART__" assert {
-    __turbopack_part__: 26
-};
+"module evaluation";
 
 ```

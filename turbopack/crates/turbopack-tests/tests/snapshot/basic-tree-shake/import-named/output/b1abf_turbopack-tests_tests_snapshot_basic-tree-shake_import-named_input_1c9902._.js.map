@@ -26,10 +26,10 @@
     {"offset": {"line": 144, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
     {"offset": {"line": 149, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
     {"offset": {"line": 160, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 165, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/turbopack/crates/turbopack-tests/tests/snapshot/basic-tree-shake/import-named/input/index.js"],"sourcesContent":["import {cat as c} from './lib'\n\nconsole.log(c)\n"],"names":[],"mappings":";;;;;;;AAEA,QAAQ,GAAG,CAAC,kPAAA,CAAA,IAAC"}},
-    {"offset": {"line": 173, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 178, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 185, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 190, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 195, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+    {"offset": {"line": 165, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/turbopack/crates/turbopack-tests/tests/snapshot/basic-tree-shake/import-named/input/index.js"],"sourcesContent":["import {cat as c} from './lib'\n\nconsole.log(c)\n"],"names":[],"mappings":";;;;;;AAEA,QAAQ,GAAG,CAAC,kPAAA,CAAA,IAAC"}},
+    {"offset": {"line": 172, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 177, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 184, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 189, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 194, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
 }

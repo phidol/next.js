@@ -26,10 +26,10 @@
     {"offset": {"line": 144, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
     {"offset": {"line": 149, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
     {"offset": {"line": 160, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 165, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/turbopack/crates/turbopack-tests/tests/snapshot/basic-tree-shake/import-named-all/input/index.js"],"sourcesContent":["import {cat as c,dogRef,initialCat,getChimera} from './lib'\n\nconsole.log(c)\n\n// TODO: Execution\n"],"names":[],"mappings":";;;;;;;AAEA,QAAQ,GAAG,CAAC,yPAAA,CAAA,IAAC,EAEb,kBAAkB"}},
-    {"offset": {"line": 174, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 179, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 186, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 191, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 196, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+    {"offset": {"line": 165, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/turbopack/crates/turbopack-tests/tests/snapshot/basic-tree-shake/import-named-all/input/index.js"],"sourcesContent":["import {cat as c,dogRef,initialCat,getChimera} from './lib'\n\nconsole.log(c)\n\n// TODO: Execution\n"],"names":[],"mappings":";;;;;;AAEA,QAAQ,GAAG,CAAC,yPAAA,CAAA,IAAC,EAEb,kBAAkB"}},
+    {"offset": {"line": 173, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 178, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 185, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 190, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 195, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
 }
