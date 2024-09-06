@@ -398,7 +398,7 @@ pub(crate) enum SplitResult {
         modules: Vec<Vc<ParseResult>>,
 
         #[turbo_tasks(trace_ignore)]
-        deps: FxHashMap<u32, Vec<PartId>>,
+        deps: FxHashMap<u32, Vec<u32>>,
 
         #[turbo_tasks(debug_ignore, trace_ignore)]
         star_reexports: Vec<ExportAll>,
