@@ -209,13 +209,16 @@ impl ProjectContainer {
 impl ProjectContainer {
     #[tracing::instrument(level = "info", name = "initialize project", skip_all)]
     pub async fn initialize(self: Vc<Self>, options: ProjectOptions) -> Result<()> {
+        let poll_interval = options.watch.poll_interval;
+
         self.await?.options_state.set(Some(options));
+
         let project = self.project();
         project
             .project_fs()
             .strongly_consistent()
             .await?
-            .start_watching_with_invalidation_reason()?;
+            .start_watching_with_invalidation_reason(poll_interval)?;
         project
             .output_fs()
             .strongly_consistent()
@@ -288,13 +291,15 @@ impl ProjectContainer {
         let prev_project_fs = project.project_fs().strongly_consistent().await?;
         let prev_output_fs = project.output_fs().strongly_consistent().await?;
 
+        let poll_interval = new_options.watch.poll_interval;
+
         this.options_state.set(Some(new_options));
         let project_fs = project.project_fs().strongly_consistent().await?;
         let output_fs = project.output_fs().strongly_consistent().await?;
 
         if !ReadRef::ptr_eq(&prev_project_fs, &project_fs) {
             // TODO stop watching: prev_project_fs.stop_watching()?;
-            project_fs.start_watching_with_invalidation_reason()?;
+            project_fs.start_watching_with_invalidation_reason(poll_interval)?;
         }
         if !ReadRef::ptr_eq(&prev_output_fs, &output_fs) {
             prev_output_fs.invalidate_with_reason();
