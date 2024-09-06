@@ -59,8 +59,8 @@ use tokio::{
 };
 use tracing::Instrument;
 use turbo_tasks::{
-    mark_stateful, trace::TraceRawVcs, Completion,  Invalidator, RcStr, ReadRef,
-    ValueDefault, ValueToString, Vc,
+    mark_stateful, trace::TraceRawVcs, Completion, Invalidator, RcStr, ReadRef, ValueDefault,
+    ValueToString, Vc,
 };
 use turbo_tasks_hash::{hash_xxh3_hash64, DeterministicHash, DeterministicHasher};
 use util::{extract_disk_access, join_path, normalize_path, sys_to_unix, unix_to_sys};
