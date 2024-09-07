@@ -72,7 +72,7 @@ use turbopack_core::{
     reference_type::InnerAssets,
     resolve::{
         find_context_file, origin::ResolveOrigin, package_json, parse::Request,
-        FindContextFileResult, ModulePart,
+        FindContextFileResult,
     },
     source::Source,
     source_map::{GenerateSourceMap, OptionSourceMap},
@@ -83,7 +83,6 @@ pub use turbopack_resolve::ecmascript as resolve;
 use self::{
     chunk::{EcmascriptChunkItemContent, EcmascriptChunkType, EcmascriptExports},
     code_gen::{CodeGen, CodeGenerateableWithAsyncModuleInfo, CodeGenerateables, VisitorFactory},
-    tree_shake::asset::EcmascriptModulePartAsset,
 };
 use crate::{
     chunk::EcmascriptChunkPlaceable,
@@ -228,12 +227,6 @@ impl EcmascriptModuleAssetBuilder {
                 self.compile_time_info,
             )
         }
-    }
-
-    pub async fn build_part(self, part: Vc<ModulePart>) -> Result<Vc<EcmascriptModulePartAsset>> {
-        let import_externals = self.options.await?.import_externals;
-        let base = self.build();
-        Ok(EcmascriptModulePartAsset::new(base, part, import_externals))
     }
 }
 
