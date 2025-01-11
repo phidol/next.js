@@ -128,7 +128,11 @@ export function clearPreviewData<T>(
       // `Max-Age: 0` is not valid, thus ignored, and the cookie is persisted.
       expires: new Date(0),
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       ...(options.path !== undefined
@@ -141,7 +145,11 @@ export function clearPreviewData<T>(
       // `Max-Age: 0` is not valid, thus ignored, and the cookie is persisted.
       expires: new Date(0),
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       ...(options.path !== undefined

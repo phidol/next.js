@@ -62,7 +62,11 @@ export class DraftModeProvider {
       name: COOKIE_NAME_PRERENDER_BYPASS,
       value: this._previewModeId,
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
     })
@@ -76,7 +80,11 @@ export class DraftModeProvider {
       name: COOKIE_NAME_PRERENDER_BYPASS,
       value: '',
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       expires: new Date(0),

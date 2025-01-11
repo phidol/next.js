@@ -588,6 +588,13 @@ export interface ExperimentalConfig {
    * Besides the default behavior, Next.js act differently on serving metadata to bots based on their capability.
    */
   htmlLimitedBots?: RegExp
+
+  /**
+   * Most headless CMSs offer visual previews which embed the site as an iframe.
+   * To be able to set the prerender bypass cookie to enable draft mode from
+   * within the iframe the SameSite attribute must be set to none.
+   */
+  prerenderBypassSameSiteNone?: boolean
 }
 
 export type ExportPathMap = {

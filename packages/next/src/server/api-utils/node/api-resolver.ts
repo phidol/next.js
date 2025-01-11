@@ -156,7 +156,11 @@ function setDraftMode<T>(
         : []),
     serialize(COOKIE_NAME_PRERENDER_BYPASS, options.previewModeId, {
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       expires,
@@ -222,7 +226,11 @@ function setPreviewData<T>(
         : []),
     serialize(COOKIE_NAME_PRERENDER_BYPASS, options.previewModeId, {
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       ...(options.maxAge !== undefined
@@ -234,7 +242,11 @@ function setPreviewData<T>(
     }),
     serialize(COOKIE_NAME_PRERENDER_DATA, payload, {
       httpOnly: true,
-      sameSite: process.env.NODE_ENV !== 'development' ? 'none' : 'lax',
+      sameSite:
+        process.env.NODE_ENV !== 'development' ||
+        process.env.__NEXT_EXPERIMENTAL_PRERENDER_BYPASS_SAME_SITE_NONE
+          ? 'none'
+          : 'lax',
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
       ...(options.maxAge !== undefined
